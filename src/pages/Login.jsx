@@ -12,12 +12,13 @@ function Login() {
     try {
       const response = await api.post("/login", { email, password });
 
-      if (response.data.success) {
+      if (response.data.token) {
         alert("Login successful!");
       } else {
-        setError(response.data.message || "Login failed");
+        setError(response.data.error || "Login failed");
       }
     } catch (err) {
+      console.error(err);
       setError("Server error");
     }
   };
